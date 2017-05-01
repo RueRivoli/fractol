@@ -36,8 +36,7 @@ t_env		*handle_error(int argc, char **argv)
 		ft_putstr("usage: fractol [parameter (mandelbrot or julia)]\n");
 		return (NULL);
 	}
-	if (ft_strcmp(argv[1], "mandelbrot") != 0 && ft_strcmp(argv[1], "Mandelbrot") != 0 && \
-	ft_strcmp(argv[1], "julia") != 0  && ft_strcmp(argv[1], "Julia") != 0)
+	if (ft_strcmp(argv[1], "mandelbrot") != 0  && ft_strcmp(argv[1], "julia") != 0)
 	{
 		error_param_no_conform();
 		return (NULL);

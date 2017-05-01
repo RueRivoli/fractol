@@ -6,7 +6,7 @@
 /*   By: fgallois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 15:58:17 by fgallois          #+#    #+#             */
-/*   Updated: 2017/04/10 14:54:50 by fgallois         ###   ########.fr       */
+/*   Updated: 2017/05/01 18:08:36 by fgallois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 
 # define PI 3.14
 # define THETA 10 * PI / 180
-# define FENE_X 900 //1200
-# define FENE_Y 650 //900
+# define FENE_X 1200 //900
+# define FENE_Y 900 //650
 
 # define CENTER_X 600
 # define CENTER_Y 450

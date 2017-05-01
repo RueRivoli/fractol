@@ -27,7 +27,7 @@ int     mouse_funct(int button, int x, int y, t_env *env)
    (void)y;
     if (button == SCROLL_UP /*|| button == SCROLL_BIS || button == SCROLL_OTHER*/)
             zoom(env, x - 360, y - 100);
-    else if (button == SCROLL_DOWN)
+    else if (button == SCROLL_DOWN /*|| button == SCROLL_BIS*/)
             dezoom(env, x - 360, y - 100);
     return (0);
 }

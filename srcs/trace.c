@@ -6,7 +6,7 @@
 /*   By: fgallois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 17:09:54 by fgallois          #+#    #+#             */
-/*   Updated: 2017/04/10 13:40:37 by fgallois         ###   ########.fr       */
+/*   Updated: 2017/05/01 18:18:49 by fgallois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void		trace_julia(t_env *env)
 		y = 0;
 		while (y < FENE_Y)
 		{
-			re_cte = 0.285;
-			im_cte = 0.01;
+			re_cte = 0.4;/*0.285*/
+			im_cte = 0.01;/*0.01*/
 
 			re_z = env->x_init + (env->x_fin - env->x_init) * x / FENE_X;
 			im_z = env->y_init + (env->y_fin - env->y_init) * y / FENE_Y;
@@ -74,6 +74,8 @@ void 	initialise_coef(t_env *env)
 	ft_strcmp(env->fractal_name, "Mandelbrot") == 0)
 	{
 		env->fractal_name = "mandelbrot";
+		env->re_julia = 0.0;
+		env->im_julia = 0.0;
 		env->x_0 = -2.1;
 		env->alphax = 2.7 / FENE_X;
 		env->y_0 = -1.2;
@@ -90,6 +92,8 @@ void 	initialise_coef(t_env *env)
 	ft_strcmp(env->fractal_name, "Julia") == 0)
 	{
 		env->fractal_name = "julia";
+		env->re_julia = 0.285;
+		env->im_julia = 0.01;
 		env->x_0 = -1.0;
 		env->alphax = 2.0 / FENE_X;
 		env->y_0 = -1.2;
@@ -145,8 +149,6 @@ void		trace_mandelbrot(t_env *env)
 			if (i == env->iteration)
 			{
 				str = rgb_to_pchar(env, env->iteration, env->iteration, env->iteration);
-				//str = "0xFF0000";
-				//mlx_put_pixel_to_imagec(env, x, y, str);
 				mlx_put_pixel_to_imagei(env, x, y, get_color(str));
 				free(str);
 			}
