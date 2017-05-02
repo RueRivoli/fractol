@@ -25,7 +25,9 @@ void		trace_julia(t_env *env)
 	float re_cte;
 	char *str;
 	str = NULL;
+	t_zoom *zoom;
 
+	zoom = env->zoom;
 	modify_coord(env);
 	x = 0;
 	while (x < FENE_X)
@@ -33,29 +35,29 @@ void		trace_julia(t_env *env)
 		y = 0;
 		while (y < FENE_Y)
 		{
-			re_cte = 0.4;/*0.285*/
-			im_cte = 0.01;/*0.01*/
+			re_cte = env->jul->re_cte;/*0.285*/
+			im_cte = env->jul->im_cte;/*0.01*/
 
 			re_z = env->x_init + (env->x_fin - env->x_init) * x / FENE_X;
 			im_z = env->y_init + (env->y_fin - env->y_init) * y / FENE_Y;
-			re_z = re_z + env->x_translation * ((env->x_fin - env->x_init) / 20);
-			im_z = im_z + env->y_translation * ((env->y_fin - env->y_init) / 20);
+			re_z = re_z + zoom->x_translation * ((env->x_fin - env->x_init) / 20);
+			im_z = im_z + zoom->y_translation * ((env->y_fin - env->y_init) / 20);
 			
 			i = 0;
 
-			while (re_z * re_z + im_z * im_z < 4 && i < env->iteration)
+			while (re_z * re_z + im_z * im_z < 4 && i < env->zoom->iteration)
 			{
 				mem = re_z;
 				re_z = re_z * re_z - im_z * im_z + re_cte;
 				im_z = 2 * im_z * mem + im_cte;
 				i++;
 			}
-			if (i == env->iteration)
+			if (i == zoom->iteration)
 			{
-				str = rgb_to_pchar(env, env->iteration, env->iteration, env->iteration);
+				str = rgb_to_pchar(env, zoom->iteration, zoom->iteration, zoom->iteration);
 				mlx_put_pixel_to_imagei(env, x, y, get_color(str));
 				free(str);
-			}
+			}	
 			else
 			{
 				str = rgb_to_pchar(env, 0, 0, i);
@@ -68,25 +70,20 @@ void		trace_julia(t_env *env)
 	}
 }
 
-void 	initialise_coef(t_env *env)
+/*void 	initialise_coef(t_env *env)
 {
 	if (ft_strcmp(env->fractal_name, "mandelbrot") == 0 || \
 	ft_strcmp(env->fractal_name, "Mandelbrot") == 0)
 	{
 		env->fractal_name = "mandelbrot";
-		env->re_julia = 0.0;
-		env->im_julia = 0.0;
-		env->x_0 = -2.1;
-		env->alphax = 2.7 / FENE_X;
-		env->y_0 = -1.2;
-		env->x_init = -2.1;
-		env->x_fin = 0.6;
-		env->x_translation = 0;
-		env->y_translation = 0;
-		env->y_fin = 1.2;
-		env->y_init = -1.2;
-		env->iteration = 50;
-		env->alphay = 2.4 / FENE_Y;
+	
+
+		new_mandelbrot(env);
+		new_zoom(env);
+		
+		
+		
+
 	}
 	else if (ft_strcmp(env->fractal_name, "julia") == 0 || \
 	ft_strcmp(env->fractal_name, "Julia") == 0)
@@ -97,16 +94,8 @@ void 	initialise_coef(t_env *env)
 		env->x_0 = -1.0;
 		env->alphax = 2.0 / FENE_X;
 		env->y_0 = -1.2;
-		env->x_init = -1.0;
-		env->x_fin = 1.0;
-		env->x_translation = 0;
-		env->y_translation = 0;
-		env->y_fin = 1.2;
-		env->y_init = -1.2;
-		env->iteration = 150;
-		env->alphay = 2.4 / FENE_Y;
 	}
-}
+}*/
 
 
 
@@ -121,6 +110,9 @@ void		trace_mandelbrot(t_env *env)
 	float im_cte;
 	float re_cte;
 	char *str;
+	t_zoom *zoom;
+
+	zoom = env->zoom;
 	str = NULL;
 	x = 0;
 	modify_coord(env);
@@ -132,13 +124,13 @@ void		trace_mandelbrot(t_env *env)
 			
 			re_cte = env->x_init + (env->x_fin - env->x_init) * x / FENE_X;
 			im_cte = env->y_init + (env->y_fin - env->y_init) * y / FENE_Y;
-			re_cte = re_cte + env->x_translation * ((env->x_fin - env->x_init) / 20);
-			im_cte = im_cte + env->y_translation * ((env->y_fin - env->y_init) / 20);
+			re_cte = re_cte + zoom->x_translation * ((env->x_fin - env->x_init) / 20);
+			im_cte = im_cte + zoom->y_translation * ((env->y_fin - env->y_init) / 20);
 			re_z = 0;
 			im_z = 0;
 			i = 0;
 
-			while (re_z * re_z + im_z * im_z < 4 && i < env->iteration)
+			while (re_z * re_z + im_z * im_z < 4 && i < zoom->iteration)
 			{
 				mem = re_z;
 				re_z = re_z * re_z - im_z * im_z + re_cte;
@@ -146,9 +138,9 @@ void		trace_mandelbrot(t_env *env)
 				i++;
 			}
 		
-			if (i == env->iteration)
+			if (i == zoom->iteration)
 			{
-				str = rgb_to_pchar(env, env->iteration, env->iteration, env->iteration);
+				str = rgb_to_pchar(env, zoom->iteration, zoom->iteration, zoom->iteration);
 				mlx_put_pixel_to_imagei(env, x, y, get_color(str));
 				free(str);
 			}

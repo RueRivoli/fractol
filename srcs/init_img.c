@@ -16,23 +16,25 @@ char    *rgb_to_pchar(t_env *env, int rn, int gn, int bn)
 {
     char *hex;
     char *str;
+	t_zoom *zoom;
 
+	zoom = env->zoom;
     if (!(str = ft_strnew(8)))
         return (NULL);
     hex = NULL;
-	hex = ft_itohex((int)rn * 255 / env->iteration);
+	hex = ft_itohex((int)rn * 255 / zoom->iteration);
     str[0] = '0';
     str[1] = 'x';
     str[2] = hex[0];
     str[3] = hex[1];
 	free(hex);
 	hex = NULL;
-    hex = ft_itohex((int)gn * 255 / env->iteration);
+    hex = ft_itohex((int)gn * 255 / zoom->iteration);
     str[4] = hex[0];
     str[5] = hex[1];
 	free(hex);
 	hex = NULL;
-    hex = ft_itohex((int)bn * 255 / env->iteration);
+    hex = ft_itohex((int)bn * 255 / zoom->iteration);
     str[6] = hex[0];
     str[7] = hex[1];
 	free(hex);

@@ -31,62 +31,71 @@ void	refresh(t_env *env)
 
 void	 translation(t_env *env, int i)
 {
-	env->x_zoom = 0;
-	env->y_zoom = 0;
-	env->prec_zoom = 0;
-	env->prec_dezoom = 0;
-	env->zoom = 1.0;
+	t_zoom *zoom;
+
+	zoom = env->zoom;
+	zoom->x_zoom = 0;
+	zoom->y_zoom = 0;
+	zoom->prec_zoom = 0;
+	zoom->prec_dezoom = 0;
+	zoom->zoom = 1.0;
 	
 	if (i == 0)
 	{
-		env->x_translation++;
+		zoom->x_translation++;
 	}
 	else if (i == 1)
 	{
-		env->y_translation--;
+		zoom->y_translation--;
 	}
 	else if (i == 2)
 	{
-		env->x_translation--;
+		zoom->x_translation--;
 	}
 	else if (i == 3)
 	{	
-		env->y_translation++;
+		zoom->y_translation++;
 	}
 	refresh(env);
 }
 
 void	restart(t_env *env)
 {
-	initialise_coef(env);
+	adapt_to_fractal(env);
 	refresh(env);
 }
 void		zoom(t_env *env, int x, int y)
-{	
-	if (env->prec_zoom == 1)
-		env->zoom = env->zoom * 1.05;
+{
+	t_zoom *zoom;	
+
+	zoom = env->zoom;
+	if (zoom->prec_zoom == 1)
+		zoom->zoom = zoom->zoom * 1.05;
 	else
-		env->zoom = 1.01;
-	if (env->zoom > 1.4)
-		env->zoom = 1.2;
-	env->prec_zoom = 1;
-	env->prec_dezoom = 0;
-	env->x_zoom = x;
-	env->y_zoom = y;
+		zoom->zoom = 1.01;
+	if (zoom->zoom > 1.4)
+		zoom->zoom = 1.2;
+	zoom->prec_zoom = 1;
+	zoom->prec_dezoom = 0;
+	zoom->x_zoom = x;
+	zoom->y_zoom = y;
 	refresh(env);
 }
 
 void		dezoom(t_env *env, int x, int y)
 {
-	if (env->prec_dezoom == 1)
-		env->zoom = env->zoom / 1.01;
+	t_zoom *zoom;	
+
+	zoom = env->zoom;
+	if (zoom->prec_dezoom == 1)
+		zoom->zoom = zoom->zoom / 1.01;
 	else
-		env->zoom = 0.95;
-	if (env->zoom < 0.8)
-		env->zoom = 0.90;
-	env->prec_dezoom = 1;
-	env->prec_zoom = 0;
-	env->x_zoom = x;
-	env->y_zoom = y;
+		zoom->zoom = 0.95;
+	if (zoom->zoom < 0.8)
+		zoom->zoom = 0.90;
+	zoom->prec_dezoom = 1;
+	zoom->prec_zoom = 0;
+	zoom->x_zoom = x;
+	zoom->y_zoom = y;
 	refresh(env);
 }

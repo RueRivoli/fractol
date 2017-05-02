@@ -79,9 +79,17 @@ char			*ft_itohex(int i);
 
 void		new_one(t_env *env);
 
-void		new_two(t_env *env);
+//void		new_two(t_env *env);
+
+void        new_mandelbrot(t_env *env);
+
+void        new_julia(t_env *env);
+
+void		adapt_to_fractal(t_env *env);
 
 t_env		*new_env(void);
+
+void        new_zoom(t_env *env);
 
 t_env		*init_env(char *av1);
 

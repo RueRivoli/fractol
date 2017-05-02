@@ -61,7 +61,7 @@ int			main(int argc, char **argv)
 		return (0);
 		
 	//ft_hook(env);
-	initialise_coef(env);
+	//initialise_coef(env);
 	
 	trace(env);
 	//mlx_expose_hook(env->win, &print_title, &env->mlx);

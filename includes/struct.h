@@ -39,10 +39,6 @@ typedef struct 	s_man
 	float 	alphay;
 	float 	x_0;
 	float 	y_0;
-	float 	x_init;
-	float 	x_fin;
-	float 	y_init;
-	float 	y_fin;
 	int		cte_x;
 	int		cte_y;
 
@@ -59,10 +55,6 @@ typedef struct 	s_jul
 
 	float 	x_0;
 	float 	y_0;
-	float 	x_init;
-	float 	x_fin;
-	float 	y_init;
-	float 	y_fin;
 	int		cte_x;
 	int		cte_y;
 
@@ -83,6 +75,7 @@ typedef struct s_zoom
 	int 	iteration;
 }				t_zoom;
 
+
 typedef struct	s_env
 {
 	void	*mlx;
@@ -92,47 +85,22 @@ typedef struct	s_env
 	t_img	*back_img;
 	t_img	*sup_img;
 	t_img	*church_img;
+
 	char	*fractal_name;
 
 	t_node	**map;
-
-	
 	t_zoom	*zoom;
 
-	/*float 	zoom;
-	int		x_zoom;
-	int		y_zoom;
-	int		x_pre_zoom;
-	int		y_pre_zoom;
-	int		x_translation;
-	int		y_translation;
-	int		prec_zoom;
-	int		prec_dezoom;
-	int 	iteration;*/
+	float 	x_init;
+	float 	x_fin;
+	float 	y_init;
+	float 	y_fin;
 
 	int		x;
 	int		y;
 
 	t_jul*	jul;
 	t_man*	man;
-	/*float 	alphax;
-	float 	alphay;
-
-	float 	re_cte;
-	float 	im_cte;
-	float 	x_0;
-	float 	y_0;
-	float 	x_init;
-	float 	x_fin;
-	float 	y_init;
-	float 	y_fin;
-	
-
-	int		cte_x;
-	int		cte_y;*/
-
-	int		bool_color;
-
 }				t_env;
 
 #endif
