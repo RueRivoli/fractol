@@ -20,7 +20,7 @@ void		new_one(t_env *env)
 	env->back_img = NULL;
 	env->sup_img = NULL;
 	env->church_img = NULL;
-	env->fractal_name = "";
+	env->fractal_name = 0;
 	env->map = NULL;
 	//env->zoom = NULL;
 	//env->jul = NULL;
@@ -29,6 +29,8 @@ void		new_one(t_env *env)
 	env->x_fin = 0;
 	env->y_init = 0;
 	env->y_fin = 0;
+	env->moovable = 0;
+	env->theme = BLUE;
 }
 
 t_env		*new_env(void)
@@ -50,21 +52,17 @@ t_env		*new_env(void)
 void		new_mandelbrot(t_env *env)
 {
 	t_man *man;
-	//t_zoom *zoom;
+	t_zoom *zoom;
 
-	//zoom = env->zoom;
+	zoom = env->zoom;
 	man = env->man;
 
-	printf("%f\n", man->x_0);
-	man->x_0 = -2.1;
-	man->alphax = 2.7 / FENE_X;
-	man->y_0 = -1.2;
-	man->alphay = 2.4 / FENE_Y;
-	env->x_init = -2.1;
-	env->x_fin = 0.6;
-	env->y_fin = 1.2;
-	env->y_init = -1.2;
-	env->zoom->iteration = 50;
+	env->x_init = -2.5;//-2.1;
+	env->x_fin = 1.2;//0.6
+	env->y_fin = 1.5;//1.2
+	env->y_init = -1.5;//-1.2
+	zoom->iteration = 50;
+	env->fractal_name = 0;
 }
 
 
@@ -77,16 +75,17 @@ void		new_julia(t_env *env)
 	jul = env->jul;
 	jul->re_cte = 0.285;
 	jul->im_cte = 0.01;
-	jul->x_0 = -1.0;
+	//jul->x_0 = -1.0;
 	jul->alphax = 2.0 / FENE_X;
-	jul->y_0 = -1.2;
+	//jul->y_0 = -1.2;
 	jul->alphay = 2.4 / FENE_Y;
 
-	env->x_init = -1.0;
-	env->x_fin = 1.0;
-	env->y_fin = 1.2;
-	env->y_init = -1.2;
-	zoom->iteration = 150;
+	env->x_init = -1.8;//-1.0
+	env->x_fin = 1.8;//1.0
+	env->y_fin = 1.7;//1.2
+	env->y_init = -1.7;//-1.2
+	zoom->iteration = 50;
+	env->fractal_name = 1;
 }
 
 void	new_zoom(t_env *env)
@@ -99,26 +98,20 @@ void	new_zoom(t_env *env)
 	zoom->zoom = 1.0;
 	zoom->x_zoom = -1;
 	zoom->y_zoom = -1;
-	zoom->x_pre_zoom = 0;
-	zoom->y_pre_zoom = 0;
+	zoom->nb_zoom = 0;
 	zoom->prec_zoom = 0;
 	zoom->prec_dezoom = 0;
 }
 
 void		adapt_to_fractal(t_env *env)
 {
-	char *av;
-
-	av = env->fractal_name;
-	if (ft_strcmp(av, "mandelbrot") == 0)
+	if (env->fractal_name == 0)
 	{
-			ft_putstr("Riviere");
 			new_mandelbrot(env);
-			ft_putstr("Rocailleux");
 			new_zoom(env);
 			env->zoom->iteration = 50;
 	}
-	else if  (ft_strcmp(av, "julia") == 0)
+	else if  (env->fractal_name == 1)
 	{
 			new_julia(env);
 			new_zoom(env);
@@ -143,10 +136,11 @@ t_env		*init_env(char *av1)
 	env->back_img = init_img(env, SIZE_X, SIZE_Y);
 	env->sup_img = init_img(env, SUPP_X, SUPP_Y);
 	env->church_img = init_img(env, CHURCH, CHURCH);
-	env->fractal_name = av1;
-	
+	if (ft_strcmp(av1, "mandelbrot") == 0)
+		env->fractal_name = 0;
+	if (ft_strcmp(av1, "julia") == 0)
+		env->fractal_name = 1;
 	adapt_to_fractal(env);
-	//initialise_coef(env);
 	fill_img(env, &h, &w);
 	return (env);
 }

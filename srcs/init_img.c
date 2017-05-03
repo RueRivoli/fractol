@@ -59,6 +59,7 @@ void		mlx_put_pixel_to_imagei(t_env *env, int x, int y, int a)
 	int		octet;
 	
 	octet = env->img->bpp / 8;
+	a = env->theme * a / env->zoom->iteration;
 	if (x >= 0 && y >= 0 && x < FENE_X && y < FENE_Y)
 	{
 		ft_memcpy(&env->img->data[octet * x + env->img->sizeline * \
@@ -81,7 +82,7 @@ t_img		*init_img(t_env *env, int height, int width)
 void		fill_img(t_env *env, int *h, int *w)
 {
 	env->back_img->img = mlx_xpm_file_to_image(env->mlx, \
-			"images/magnifique_black.xpm", w, h);
+			"images/planet.xpm", w, h);
 	env->church_img->img = mlx_xpm_file_to_image(env->mlx, \
 			"images/church.xpm", w, h);
 	env->sup_img->img = mlx_xpm_file_to_image(env->mlx, \

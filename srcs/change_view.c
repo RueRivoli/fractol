@@ -29,6 +29,12 @@ void	refresh(t_env *env)
 
 }
 
+void	moovable(t_env *env)
+{
+	if (env->fractal_name == 1)
+		env->moovable = 1;
+}
+
 void	 translation(t_env *env, int i)
 {
 	t_zoom *zoom;
@@ -64,22 +70,42 @@ void	restart(t_env *env)
 	adapt_to_fractal(env);
 	refresh(env);
 }
+
+float		power(int nb_zoom, float num)
+{
+	float res;
+	res = 1.0;
+	while (nb_zoom > 0)
+	{
+		res = num * res;
+		nb_zoom--;
+	}
+	return (res);
+}
 void		zoom(t_env *env, int x, int y)
 {
 	t_zoom *zoom;	
 
 	zoom = env->zoom;
-	if (zoom->prec_zoom == 1)
+	if (zoom->prec_dezoom == 1)
+		zoom->nb_zoom = 1;
+		else
+	zoom->nb_zoom++;
+	/*if (zoom->prec_zoom == 1)
 		zoom->zoom = zoom->zoom * 1.05;
 	else
 		zoom->zoom = 1.01;
 	if (zoom->zoom > 1.4)
-		zoom->zoom = 1.2;
-	zoom->prec_zoom = 1;
-	zoom->prec_dezoom = 0;
+		zoom->zoom = 1.2;*/
+	zoom->zoom = power(zoom->nb_zoom, 1.01);
+	/*zoom->prec_zoom = 1;
+	zoom->prec_dezoom = 0;*/
 	zoom->x_zoom = x;
 	zoom->y_zoom = y;
 	refresh(env);
+	zoom->zoom = 1;
+	zoom->prec_dezoom = 0;
+	zoom->prec_zoom = 1;
 }
 
 void		dezoom(t_env *env, int x, int y)
@@ -87,15 +113,15 @@ void		dezoom(t_env *env, int x, int y)
 	t_zoom *zoom;	
 
 	zoom = env->zoom;
-	if (zoom->prec_dezoom == 1)
-		zoom->zoom = zoom->zoom / 1.01;
+	if (zoom->prec_zoom == 1)
+		zoom->nb_zoom = -1;
 	else
-		zoom->zoom = 0.95;
-	if (zoom->zoom < 0.8)
-		zoom->zoom = 0.90;
-	zoom->prec_dezoom = 1;
-	zoom->prec_zoom = 0;
+		zoom->nb_zoom--;
+	zoom->zoom = power(-zoom->nb_zoom, 0.95);
 	zoom->x_zoom = x;
 	zoom->y_zoom = y;
 	refresh(env);
+	zoom->zoom = 1;
+	zoom->prec_dezoom = 1;
+	zoom->prec_zoom = 0;
 }

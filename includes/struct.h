@@ -63,10 +63,9 @@ typedef struct 	s_jul
 typedef struct s_zoom
 {
 	float 	zoom;
+	int 	nb_zoom;
 	int		x_zoom;
 	int		y_zoom;
-	int		x_pre_zoom;
-	int		y_pre_zoom;
 
 	int		x_translation;
 	int		y_translation;
@@ -86,7 +85,7 @@ typedef struct	s_env
 	t_img	*sup_img;
 	t_img	*church_img;
 
-	char	*fractal_name;
+	int fractal_name;
 
 	t_node	**map;
 	t_zoom	*zoom;
@@ -101,6 +100,9 @@ typedef struct	s_env
 
 	t_jul*	jul;
 	t_man*	man;
+
+	int moovable;
+	int theme;
 }				t_env;
 
 #endif

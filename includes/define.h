@@ -79,6 +79,11 @@
 # define TOUCH_E 14
 # define TOUCH_S 1
 # define TOUCH_D 2
+# define TOUCH_M 46
+
+# define TOUCH_G 5
+# define TOUCH_B 11
+# define TOUCH_Y 16
 
 /*
 ** Button of mouse
@@ -99,5 +104,15 @@
 # define COLOR_Z_8 "0x999999"
 # define COLOR_Z_9 "0xCCCCCC"
 # define COLOR_Z_10 "0xFF0000"
+
+
+# define GREEN 0xb6ff48
+# define BLUE 0x1d4a64
+# define BLUE_MENU 0x05199d
+# define YELLOW 0xEAF74D
+# define PINK 0xff00c1
+# define RED 0xff0000
+# define ORANGE 0xFFA500
+
 
 #endif

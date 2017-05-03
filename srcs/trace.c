@@ -54,14 +54,16 @@ void		trace_julia(t_env *env)
 			}
 			if (i == zoom->iteration)
 			{
-				str = rgb_to_pchar(env, zoom->iteration, zoom->iteration, zoom->iteration);
-				mlx_put_pixel_to_imagei(env, x, y, get_color(str));
+				str = rgb_to_pchar(env, /*zoom->iteration*/0, zoom->iteration, zoom->iteration);
+				//mlx_put_pixel_to_imagei(env, x, y, get_color(str));
+				mlx_put_pixel_to_imagei(env, x, y, i);
 				free(str);
 			}	
 			else
 			{
 				str = rgb_to_pchar(env, 0, 0, i);
-				mlx_put_pixel_to_imagei(env, x, y, get_color(str));
+				//mlx_put_pixel_to_imagei(env, x, y, get_color(str));
+				mlx_put_pixel_to_imagei(env, x, y, i);
 				free(str);
 			}
 			y++;
@@ -140,14 +142,14 @@ void		trace_mandelbrot(t_env *env)
 		
 			if (i == zoom->iteration)
 			{
-				str = rgb_to_pchar(env, zoom->iteration, zoom->iteration, zoom->iteration);
-				mlx_put_pixel_to_imagei(env, x, y, get_color(str));
+				str = rgb_to_pchar(env, /*zoom->iteration*/0, zoom->iteration, zoom->iteration);
+				mlx_put_pixel_to_imagei(env, x, y, i);
 				free(str);
 			}
 			else
 			{
 				str = rgb_to_pchar(env, 0, 0, i);
-				mlx_put_pixel_to_imagei(env, x, y, get_color(str));
+				mlx_put_pixel_to_imagei(env, x, y, i);
 				free(str);
 			}
 			y++;

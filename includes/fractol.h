@@ -32,6 +32,8 @@ void		dezoom(t_env *env, int x, int y);
 void	    refresh(t_env *env);
 void	    translation(t_env *env, int i);
 void	    restart(t_env *env);
+void        moovable(t_env *env);
+float		power(int nb_zoom, float num);
 
 /*
 ** error.c
@@ -54,6 +56,7 @@ void		key_funct_2(int keycode, t_env *env);
 
 int			key_funct(int keycode, t_env *env);
 
+int     mouse_funct_moovable(int x, int y, t_env *env);
 
 /*
 ** inter.c

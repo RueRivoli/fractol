@@ -50,6 +50,7 @@ void		ft_hook(t_env *env)
 {
 	mlx_key_hook(env->win, key_funct, &env->mlx);
 	mlx_mouse_hook(env->win, &mouse_funct, &env->mlx);
+	mlx_hook(env->win, 6, 1 << 8, mouse_funct_moovable, env);
 	mlx_loop(env->mlx);
 }
 

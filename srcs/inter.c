@@ -26,7 +26,6 @@ int					get_color(char *str)
 	return (-1);
 }
 
-
 void	modify_coord(t_env *env)
 {
 	float m;
@@ -50,8 +49,8 @@ void	modify_coord(t_env *env)
 
 void	trace(t_env *env)
 {
-	if (ft_strcmp(env->fractal_name, "mandelbrot") == 0)
+	if (env->fractal_name == 0)
 		trace_mandelbrot(env);
-	if (ft_strcmp(env->fractal_name, "julia") == 0)
+	if (env->fractal_name == 1)
 		trace_julia(env);
 }
