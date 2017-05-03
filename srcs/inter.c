@@ -49,8 +49,8 @@ void	modify_coord(t_env *env)
 
 void	trace(t_env *env)
 {
-	if (env->fractal_name == 0)
+	if (env->number == 0)
 		trace_mandelbrot(env);
-	if (env->fractal_name == 1)
+	if (env->number == 1)
 		trace_julia(env);
 }

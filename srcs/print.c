@@ -27,4 +27,6 @@ void		print_all(t_env *env)
 	print_image_sign(env);
 	print_image_supp(env);
 	print_image_graph(env);
+	print_menu(env);
+	print_title(env);
 }

@@ -20,7 +20,8 @@ void		new_one(t_env *env)
 	env->back_img = NULL;
 	env->sup_img = NULL;
 	env->church_img = NULL;
-	env->fractal_name = 0;
+	env->number = 0;
+	env->fractal_name = "";
 	env->map = NULL;
 	//env->zoom = NULL;
 	//env->jul = NULL;
@@ -85,7 +86,7 @@ void		new_julia(t_env *env)
 	env->y_fin = 1.7;//1.2
 	env->y_init = -1.7;//-1.2
 	zoom->iteration = 50;
-	env->fractal_name = 1;
+	env->number = 1;
 }
 
 void	new_zoom(t_env *env)
@@ -105,13 +106,13 @@ void	new_zoom(t_env *env)
 
 void		adapt_to_fractal(t_env *env)
 {
-	if (env->fractal_name == 0)
+	if (env->number == 0)
 	{
 			new_mandelbrot(env);
 			new_zoom(env);
 			env->zoom->iteration = 50;
 	}
-	else if  (env->fractal_name == 1)
+	else if  (env->number == 1)
 	{
 			new_julia(env);
 			new_zoom(env);
@@ -137,9 +138,15 @@ t_env		*init_env(char *av1)
 	env->sup_img = init_img(env, SUPP_X, SUPP_Y);
 	env->church_img = init_img(env, CHURCH, CHURCH);
 	if (ft_strcmp(av1, "mandelbrot") == 0)
-		env->fractal_name = 0;
+	{
+		env->number = 0;
+		env->fractal_name = "Mandelbrot";
+	}
 	if (ft_strcmp(av1, "julia") == 0)
-		env->fractal_name = 1;
+	{
+		env->number = 1;
+		env->fractal_name = "Julia";
+	}
 	adapt_to_fractal(env);
 	fill_img(env, &h, &w);
 	return (env);

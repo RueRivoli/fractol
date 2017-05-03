@@ -38,7 +38,7 @@ CFLAGS += $(addprefix -I,$(INC_PATH) $(LIBFT_INC_PATH) $(MLX_INC_PATH))
 SRC_PATH = srcs/
 vpath %.c $(SRC_PATH)
 
-SOURCES = change_view.c error.c event_funct.c ft_itohex.c inter.c init_env.c init_img.c main.c print.c trace.c 
+SOURCES = change_view.c error.c event_funct.c ft_itohex.c inter.c init_env.c init_img.c main.c print.c print2.c trace.c 
 
 # Libft
 LIBFT_PATH = libft

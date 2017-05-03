@@ -129,6 +129,13 @@ void		print_image_graph(t_env *env);
 void		print_image_supp(t_env *env);
 void		print_image_back(t_env *env);
 
+/*
+** print2.c
+*/
+
+
+int			print_menu(t_env *env);
+void		print_title(t_env *env);
 
 /*
 ** trace.c

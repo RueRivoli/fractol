@@ -65,32 +65,12 @@ int     mouse_funct(int button, int x, int y, t_env *env)
 
 int     mouse_funct_moovable(int x, int y, t_env *env)
 {
-    //static int tmp_x;
-    //static int tmp_y;
-
     if (env->moovable == 1 && (360 < x)  && (x < 1200 + 360) && (100 < y) && (y < 900 + 100))
     {
-            //env->jul->re_cte = 0.285 + 0.1 * (x - 360) / 1200;
-            //env->jul->im_cte = 0.01 + 0.01 * (y - 100) / 900;
-
              env->jul->re_cte = 0.285 + 0.1 * (x - 960) / 500;
             env->jul->im_cte = 0.01 + 0.01 * (y - 550) / 450;
-        /*if (x > tmp_x)
-			env->jul->re_cte += 0.05;
-		else
-			env->jul->re_cte -= 0.05;
-		if (y > tmp_y)
-			env->jul->im_cte += 0.05;
-		else
-			env->jul->im_cte -= 0.05;*/
-        refresh(env);
-    
-    /*tmp_x = x;
-    tmp_y = y;*/
+            refresh(env);
     }
 
     return (0);
 }
-
-
-

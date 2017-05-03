@@ -85,7 +85,8 @@ typedef struct	s_env
 	t_img	*sup_img;
 	t_img	*church_img;
 
-	int fractal_name;
+	int number;
+	char *fractal_name;
 
 	t_node	**map;
 	t_zoom	*zoom;

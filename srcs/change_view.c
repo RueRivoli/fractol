@@ -31,7 +31,7 @@ void	refresh(t_env *env)
 
 void	moovable(t_env *env)
 {
-	if (env->fractal_name == 1)
+	if (env->number == 1)
 		env->moovable = 1;
 }
 
@@ -91,15 +91,7 @@ void		zoom(t_env *env, int x, int y)
 		zoom->nb_zoom = 1;
 		else
 	zoom->nb_zoom++;
-	/*if (zoom->prec_zoom == 1)
-		zoom->zoom = zoom->zoom * 1.05;
-	else
-		zoom->zoom = 1.01;
-	if (zoom->zoom > 1.4)
-		zoom->zoom = 1.2;*/
 	zoom->zoom = power(zoom->nb_zoom, 1.01);
-	/*zoom->prec_zoom = 1;
-	zoom->prec_dezoom = 0;*/
 	zoom->x_zoom = x;
 	zoom->y_zoom = y;
 	refresh(env);
