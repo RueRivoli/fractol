@@ -23,9 +23,6 @@ void		new_one(t_env *env)
 	env->number = 0;
 	env->fractal_name = "";
 	env->map = NULL;
-	//env->zoom = NULL;
-	//env->jul = NULL;
-	//env->man = NULL;
 	env->x_init = 0;
 	env->x_fin = 0;
 	env->y_init = 0;
@@ -46,6 +43,8 @@ t_env		*new_env(void)
 		return (NULL);
 	if (!(env->zoom = (t_zoom*)malloc(sizeof(t_zoom))))
 		return (NULL);
+	if (!(env->fractal_name = (char*)malloc(sizeof(char))))
+		return (NULL);	
 	new_one(env);
 	return (env);
 }
@@ -57,13 +56,11 @@ void		new_mandelbrot(t_env *env)
 
 	zoom = env->zoom;
 	man = env->man;
-
-	env->x_init = -2.5;//-2.1;
-	env->x_fin = 1.2;//0.6
-	env->y_fin = 1.5;//1.2
-	env->y_init = -1.5;//-1.2
+	env->x_init = -2.5;
+	env->x_fin = 1.2;
+	env->y_fin = 1.5;
+	env->y_init = -1.5;
 	zoom->iteration = 50;
-	env->fractal_name = 0;
 }
 
 
@@ -76,15 +73,10 @@ void		new_julia(t_env *env)
 	jul = env->jul;
 	jul->re_cte = 0.285;
 	jul->im_cte = 0.01;
-	//jul->x_0 = -1.0;
-	jul->alphax = 2.0 / FENE_X;
-	//jul->y_0 = -1.2;
-	jul->alphay = 2.4 / FENE_Y;
-
-	env->x_init = -1.8;//-1.0
-	env->x_fin = 1.8;//1.0
-	env->y_fin = 1.7;//1.2
-	env->y_init = -1.7;//-1.2
+	env->x_init = -1.8;
+	env->x_fin = 1.8;
+	env->y_fin = 1.7;
+	env->y_init = -1.7;
 	zoom->iteration = 50;
 	env->number = 1;
 }
@@ -106,7 +98,8 @@ void	new_zoom(t_env *env)
 
 void		adapt_to_fractal(t_env *env)
 {
-	if (env->number == 0)
+	
+	if (env->number == 0 || env->number == 2)
 	{
 			new_mandelbrot(env);
 			new_zoom(env);
@@ -146,6 +139,11 @@ t_env		*init_env(char *av1)
 	{
 		env->number = 1;
 		env->fractal_name = "Julia";
+	}
+	if (ft_strcmp(av1, "bship") == 0)
+	{
+		env->number = 2;
+		env->fractal_name = "Bship";
 	}
 	adapt_to_fractal(env);
 	fill_img(env, &h, &w);

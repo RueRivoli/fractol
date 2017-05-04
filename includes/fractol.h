@@ -34,6 +34,8 @@ void	    translation(t_env *env, int i);
 void	    restart(t_env *env);
 void        moovable(t_env *env);
 float		power(int nb_zoom, float num);
+void		change_color(t_env *env, int color);
+void	    change_iteration(t_env *env, int sign);
 
 /*
 ** error.c
@@ -56,7 +58,7 @@ void		key_funct_2(int keycode, t_env *env);
 
 int			key_funct(int keycode, t_env *env);
 
-int     mouse_funct_moovable(int x, int y, t_env *env);
+int         mouse_funct_moovable(int x, int y, t_env *env);
 
 /*
 ** inter.c
@@ -66,7 +68,8 @@ float		value_x(t_env *env, int x);
 float		value_y(t_env *env, int y);
 int			get_color(char *str);
 void	    trace(t_env *env);
-void	modify_coord(t_env *env);
+void	    modify_coord(t_env *env);
+t_node 		*init_node();
 
 /*
 ** ft_itohex.c
@@ -100,15 +103,11 @@ t_env		*init_env(char *av1);
 ** init_img.c
 */
 
-void		mlx_put_pixel_to_imagec(t_env *env, int x, int y, char *str);
-
-void		mlx_put_pixel_to_imagei(t_env *env, int x, int y, int a);
+void		mlx_put_pixel_to_image(t_env *env, int x, int y, int color);
 
 t_img		*init_img(t_env *env, int height, int width);
 
 void		fill_img(t_env *env, int *h, int *w);
-
-char        *rgb_to_pchar(t_env *env, int rn, int gn, int bn);
 
 /*
 ** main.c
@@ -134,20 +133,21 @@ void		print_image_back(t_env *env);
 */
 
 
-int			print_menu(t_env *env);
-void		print_title(t_env *env);
+int		    print_menu(t_env *env);
+int		    print_title(t_env *env);
 
 /*
 ** trace.c
 */
 
-
-void        initialise_coef(t_env *env);
-void	    check_extremes(t_env *env, int x, int y);
-void		change_coef_zoom(t_env *env, int x, int y);
-void		change_coef_dezoom(t_env *env, int x, int y);
+void		transform_mandelbrot(t_node *node, float re_cte, float im_cte);
+void		transform_bship(t_node *node, float re_cte, float im_cte);
+void		transform_julia(t_node *node, float re_cte, float im_cte);
+void		update(t_env *env, t_node *node, int x, int y);
+void		formula_mandelbrot(t_env *env, t_node *node, int x, int y);
+void		formula_julia(t_env *env, t_node *node, int x, int y);
 void		trace_mandelbrot(t_env *env);
 void		trace_julia(t_env *env);
-char	    *ft_tohex(int h, float s, float l);
+void        trace_bship(t_env *env);
 
 #endif

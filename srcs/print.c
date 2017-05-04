@@ -12,6 +12,7 @@ void			print_image_supp(t_env *env)
 
 void			print_image_graph(t_env *env)
 {
+	
 	mlx_put_image_to_window(env->mlx, env->win, (env->img)->img, 360, 100);
 }
 

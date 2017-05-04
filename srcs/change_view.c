@@ -26,13 +26,30 @@ void	refresh(t_env *env)
     env->img = init_img(env, FENE_X, FENE_Y);
     trace(env);
     print_image_graph(env);
-
 }
 
 void	moovable(t_env *env)
 {
 	if (env->number == 1)
 		env->moovable = 1;
+}
+
+void	change_iteration(t_env *env, int sign)
+{
+	if (sign == 1)
+		env->zoom->iteration +=10;
+	else if (sign == 0)
+	{
+		if (env->zoom->iteration > 10)
+			env->zoom->iteration -= 10;
+	}	
+	refresh(env);
+}
+
+void		change_color(t_env *env, int color)
+{
+	env->theme = color;
+	refresh(env);
 }
 
 void	 translation(t_env *env, int i)
@@ -44,24 +61,16 @@ void	 translation(t_env *env, int i)
 	zoom->y_zoom = 0;
 	zoom->prec_zoom = 0;
 	zoom->prec_dezoom = 0;
+	 
 	zoom->zoom = 1.0;
-	
 	if (i == 0)
-	{
 		zoom->x_translation++;
-	}
 	else if (i == 1)
-	{
 		zoom->y_translation--;
-	}
 	else if (i == 2)
-	{
 		zoom->x_translation--;
-	}
 	else if (i == 3)
-	{	
 		zoom->y_translation++;
-	}
 	refresh(env);
 }
 
@@ -82,6 +91,7 @@ float		power(int nb_zoom, float num)
 	}
 	return (res);
 }
+
 void		zoom(t_env *env, int x, int y)
 {
 	t_zoom *zoom;	

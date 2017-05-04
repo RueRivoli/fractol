@@ -13,110 +13,128 @@
 #include "fractol.h"
 #include <stdio.h>
 
+void		transform_mandelbrot(t_node *node, float re_cte, float im_cte)
+{
+	float mem;
+
+	mem = node->re_z;
+	node->re_z = node->re_z * node->re_z - node->im_z * node->im_z + re_cte;
+	node->im_z = 2 * node->im_z * mem + im_cte;
+}
+
+
+void		transform_julia(t_node *node, float re_cte, float im_cte)
+{
+	float mem;
+
+	mem = node->re_z;
+	node->re_z = node->re_z * node->re_z - node->im_z * node->im_z + re_cte;
+	node->im_z = 2 * node->im_z * mem + im_cte;
+}
+
+void		transform_bship(t_node *node, float re_cte, float im_cte)
+{
+	float mem;
+
+	mem = node->re_z;
+	node->re_z = fabsf(node->re_z * node->re_z) - fabsf(node->im_z * node->im_z) + re_cte;
+	node->im_z = 2 * fabsf(node->im_z * mem) + im_cte;
+}
+
+void		formula_julia(t_env *env, t_node *node, int x, int y)
+{
+	t_zoom *zoom;
+	float re_cte;
+	float im_cte;
+	int iteration;
+
+	zoom = env->zoom;
+	re_cte = env->jul->re_cte;
+	im_cte = env->jul->im_cte;
+	iteration = 0;
+	node->re_z = 0.0;
+	node->im_z = 0.0;
+	node->re_z = env->x_init + (env->x_fin - env->x_init) * x / FENE_X;
+	node->im_z = env->y_init + (env->y_fin - env->y_init) * y / FENE_Y;
+	node->re_z = node->re_z + zoom->x_translation * ((env->x_fin - env->x_init) / 20);
+	node->im_z = node->im_z + zoom->y_translation * ((env->y_fin - env->y_init) / 20);
+	iteration = 0;
+	while (node->re_z * node->re_z + node->im_z * node->im_z < 4 && iteration < env->zoom->iteration)
+	{
+		transform_julia(node, re_cte, im_cte);
+		iteration++;
+	}
+	if (iteration == zoom->iteration)
+			mlx_put_pixel_to_image(env, x, y, iteration);
+	else
+			mlx_put_pixel_to_image(env, x, y, iteration);
+}
+
 void		trace_julia(t_env *env)
 {
 	int x;
 	int y;
-	float re_z;
-	float im_z;
-	float mem;
-	int i;
-	float im_cte;
-	float re_cte;
-	char *str;
-	str = NULL;
 	t_zoom *zoom;
+	t_node *node;
 
 	zoom = env->zoom;
 	modify_coord(env);
 	x = 0;
+	node = init_node();
 	while (x < FENE_X)
 	{
 		y = 0;
 		while (y < FENE_Y)
 		{
-			re_cte = env->jul->re_cte;/*0.285*/
-			im_cte = env->jul->im_cte;/*0.01*/
-
-			re_z = env->x_init + (env->x_fin - env->x_init) * x / FENE_X;
-			im_z = env->y_init + (env->y_fin - env->y_init) * y / FENE_Y;
-			re_z = re_z + zoom->x_translation * ((env->x_fin - env->x_init) / 20);
-			im_z = im_z + zoom->y_translation * ((env->y_fin - env->y_init) / 20);
-			
-			i = 0;
-
-			while (re_z * re_z + im_z * im_z < 4 && i < env->zoom->iteration)
-			{
-				mem = re_z;
-				re_z = re_z * re_z - im_z * im_z + re_cte;
-				im_z = 2 * im_z * mem + im_cte;
-				i++;
-			}
-			if (i == zoom->iteration)
-			{
-				str = rgb_to_pchar(env, /*zoom->iteration*/0, zoom->iteration, zoom->iteration);
-				//mlx_put_pixel_to_imagei(env, x, y, get_color(str));
-				mlx_put_pixel_to_imagei(env, x, y, i);
-				free(str);
-			}	
-			else
-			{
-				str = rgb_to_pchar(env, 0, 0, i);
-				//mlx_put_pixel_to_imagei(env, x, y, get_color(str));
-				mlx_put_pixel_to_imagei(env, x, y, i);
-				free(str);
-			}
+			formula_julia(env, node, x, y);
 			y++;
 		}
 		x++;
 	}
+	free(node);
 }
 
-/*void 	initialise_coef(t_env *env)
+
+void		formula_mandelbrot(t_env *env, t_node *node, int x, int y)
 {
-	if (ft_strcmp(env->fractal_name, "mandelbrot") == 0 || \
-	ft_strcmp(env->fractal_name, "Mandelbrot") == 0)
-	{
-		env->fractal_name = "mandelbrot";
+	t_zoom *zoom;
+	int iteration;
+	float im_cte;
+	float re_cte;
+
+	iteration = 0;
+	zoom = env->zoom;
+			
+	node->re_z = 0.0;
+	node->im_z = 0.0;
+	re_cte = env->x_init + (env->x_fin - env->x_init) * x / FENE_X;
+	im_cte = env->y_init + (env->y_fin - env->y_init) * y / FENE_Y;
+	re_cte = re_cte + zoom->x_translation * ((env->x_fin - env->x_init) / 20);
+	im_cte = im_cte + zoom->y_translation * ((env->y_fin - env->y_init) / 20);
 	
-
-		new_mandelbrot(env);
-		new_zoom(env);
-		
-		
-		
-
-	}
-	else if (ft_strcmp(env->fractal_name, "julia") == 0 || \
-	ft_strcmp(env->fractal_name, "Julia") == 0)
+	while (node->re_z * node->re_z + node->im_z * node->im_z < 4 && iteration < zoom->iteration)
 	{
-		env->fractal_name = "julia";
-		env->re_julia = 0.285;
-		env->im_julia = 0.01;
-		env->x_0 = -1.0;
-		env->alphax = 2.0 / FENE_X;
-		env->y_0 = -1.2;
+		if (env->number == 0)
+			transform_mandelbrot(node, re_cte, im_cte);
+		else if (env->number == 2)
+			transform_bship(node, re_cte, im_cte);
+		iteration++;
 	}
-}*/
-
+	if (iteration == zoom->iteration)
+			mlx_put_pixel_to_image(env, x, y, iteration);
+	else
+			mlx_put_pixel_to_image(env, x, y, iteration);
+}
 
 
 void		trace_mandelbrot(t_env *env)
 {
 	int x;
 	int y;
-	float re_z;
-	float im_z;
-	float mem;
-	int i;
-	float im_cte;
-	float re_cte;
-	char *str;
-	t_zoom *zoom;
+	t_node *node;
 
-	zoom = env->zoom;
-	str = NULL;
 	x = 0;
+	node = init_node();
 	modify_coord(env);
 	while (x < FENE_X)
 	{
@@ -124,37 +142,11 @@ void		trace_mandelbrot(t_env *env)
 		while (y < FENE_Y)
 		{
 			
-			re_cte = env->x_init + (env->x_fin - env->x_init) * x / FENE_X;
-			im_cte = env->y_init + (env->y_fin - env->y_init) * y / FENE_Y;
-			re_cte = re_cte + zoom->x_translation * ((env->x_fin - env->x_init) / 20);
-			im_cte = im_cte + zoom->y_translation * ((env->y_fin - env->y_init) / 20);
-			re_z = 0;
-			im_z = 0;
-			i = 0;
-
-			while (re_z * re_z + im_z * im_z < 4 && i < zoom->iteration)
-			{
-				mem = re_z;
-				re_z = re_z * re_z - im_z * im_z + re_cte;
-				im_z = 2 * im_z * mem + im_cte;
-				i++;
-			}
-		
-			if (i == zoom->iteration)
-			{
-				str = rgb_to_pchar(env, /*zoom->iteration*/0, zoom->iteration, zoom->iteration);
-				mlx_put_pixel_to_imagei(env, x, y, i);
-				free(str);
-			}
-			else
-			{
-				str = rgb_to_pchar(env, 0, 0, i);
-				mlx_put_pixel_to_imagei(env, x, y, i);
-				free(str);
-			}
+			formula_mandelbrot(env, node, x, y);
 			y++;
 		}
 		x++;
 	}
+	free(node);
 }
 

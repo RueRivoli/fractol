@@ -11,21 +11,6 @@
 /* ************************************************************************** */
 
 #include "fractol.h"
-/*
-char		*get_file_name(char *av1)
-{
-	char *st;
-
-	st = NULL;
-	if (ft_ispresent(av1, '/') == 1)
-	{
-		st = ft_strrchr(av1, '/');
-		st++;
-	}
-	else
-		st = av1;
-	return (ft_strsub(st, 0, ft_strlen(st) - 4));
-}*/
 
 t_env		*handle_error(int argc, char **argv)
 {
@@ -33,10 +18,10 @@ t_env		*handle_error(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_putstr("usage: fractol [parameter (mandelbrot or julia)]\n");
+		ft_putstr("usage: fractol [parameter (mandelbrot, julia or bship)]\n");
 		return (NULL);
 	}
-	if (ft_strcmp(argv[1], "mandelbrot") != 0  && ft_strcmp(argv[1], "julia") != 0)
+	if (ft_strcmp(argv[1], "mandelbrot") != 0  && ft_strcmp(argv[1], "julia") && ft_strcmp(argv[1], "bship") != 0)
 	{
 		error_param_no_conform();
 		return (NULL);
@@ -60,16 +45,11 @@ int			main(int argc, char **argv)
 	
 	if (!(env = handle_error(argc, argv)))
 		return (0);
-		
-	//ft_hook(env);
-	//initialise_coef(env);
-	
+
 	trace(env);
-	//mlx_expose_hook(env->win, &print_title, &env->mlx);
-	//ft_putstr("Savate");
 	print_all(env);
 	
 	ft_hook(env);
-	
+	free(env);	
 	return (0);
 }

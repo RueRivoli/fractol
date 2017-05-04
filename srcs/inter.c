@@ -12,6 +12,16 @@ float		value_y(t_env *env, int y)
 	env->zoom->y_translation * ((env->y_fin - env->y_init) / 20));
 }
 
+t_node 		*init_node()
+{
+	t_node *node;
+	if (!(node = (t_node*)malloc(sizeof(t_node))))
+		return (NULL);
+	node->re_z = 0.0;
+	node->im_z = 0.0;
+	return (node);
+}
+
 int					get_color(char *str)
 {
 	int		i;
@@ -49,7 +59,7 @@ void	modify_coord(t_env *env)
 
 void	trace(t_env *env)
 {
-	if (env->number == 0)
+	if (env->number == 0 || env->number == 2)
 		trace_mandelbrot(env);
 	if (env->number == 1)
 		trace_julia(env);

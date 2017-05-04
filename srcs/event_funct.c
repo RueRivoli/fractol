@@ -2,7 +2,6 @@
 
 int			key_funct(int keycode, t_env *env)
 {
-    (void)env;
 	ft_putstr("keycode :\n");
 	ft_putnbr(keycode);
     if (keycode == TOUCH_ESC)
@@ -22,40 +21,25 @@ int			key_funct(int keycode, t_env *env)
         restart(env);
         env->moovable = 0;
     }
+    else if (keycode == TOUCH_PLUS)
+        change_iteration(env, 1);
+    else if (keycode == TOUCH_LESS)
+        change_iteration(env, 0);
     else if (keycode == TOUCH_G)
-       {
-           env->theme = GREEN;
-           refresh(env);
-       }
+        change_color(env, GREEN);
     else if (keycode == TOUCH_B)
-    {
-        env->theme = BLUE;
-        refresh(env);
-    }
+        change_color(env, BLUE);
     else if (keycode == TOUCH_Y)
-    {
-        env->theme = YELLOW;
-        refresh(env);
-    }
+        change_color(env, YELLOW);
     else if (keycode == TOUCH_P)
-    {
-        env->theme = PINK;
-        refresh(env);
-    }
+        change_color(env, PINK);
     else if (keycode == TOUCH_R)
-    {
-        env->theme = RED;
-        refresh(env);
-    }
+        change_color(env, RED);
     return (0);
 }
 
 int     mouse_funct(int button, int x, int y, t_env *env)
 {
-   printf("button : %d\n", button);
-    ft_putstr("LILLE ");
-   (void)x;
-   (void)y;
     if (button == SCROLL_UP /*|| button == SCROLL_BIS || button == SCROLL_OTHER*/)
             zoom(env, x - 360, y - 100);
     else if (button == SCROLL_DOWN /*|| button == SCROLL_BIS*/)
@@ -71,6 +55,5 @@ int     mouse_funct_moovable(int x, int y, t_env *env)
             env->jul->im_cte = 0.01 + 0.01 * (y - 550) / 450;
             refresh(env);
     }
-
     return (0);
 }

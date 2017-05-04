@@ -27,9 +27,8 @@ typedef struct	s_img
 
 typedef struct	s_node
 {
-	int		x;
-	int		y;
-	int		color_num;
+	float	re_z;
+	float 	im_z;
 }				t_node;
 
 
@@ -95,9 +94,6 @@ typedef struct	s_env
 	float 	x_fin;
 	float 	y_init;
 	float 	y_fin;
-
-	int		x;
-	int		y;
 
 	t_jul*	jul;
 	t_man*	man;
