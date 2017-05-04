@@ -1,20 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   inter.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fgallois <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 19:20:36 by fgallois          #+#    #+#             */
+/*   Updated: 2017/05/04 19:22:24 by fgallois         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 float		value_x(t_env *env, int x)
 {
 	return (env->x_init + ((env->x_fin - env->x_init) * x / FENE_X) + \
-	env->zoom->x_translation * ((env->x_fin - env->x_init) / 20));
+			env->zoom->x_translation * ((env->x_fin - env->x_init) / 20));
 }
 
 float		value_y(t_env *env, int y)
 {
 	return (env->y_init + ((env->y_fin - env->y_init) * y / FENE_Y) + \
-	env->zoom->y_translation * ((env->y_fin - env->y_init) / 20));
+			env->zoom->y_translation * ((env->y_fin - env->y_init) / 20));
 }
 
-t_node 		*init_node()
+t_node		*init_node(void)
 {
-	t_node *node;
+	t_node		*node;
+
 	if (!(node = (t_node*)malloc(sizeof(t_node))))
 		return (NULL);
 	node->re_z = 0.0;
@@ -22,24 +35,10 @@ t_node 		*init_node()
 	return (node);
 }
 
-int					get_color(char *str)
+void		modify_coord(t_env *env)
 {
-	int		i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == 'x')
-			return (ft_hextoint(&str[i + 1]));
-		i++;
-	}
-	return (-1);
-}
-
-void	modify_coord(t_env *env)
-{
-	float m;
-	float n;
+	float		m;
+	float		n;
 
 	if (env->zoom->x_zoom > 0)
 		m = value_x(env, env->zoom->x_zoom);
@@ -49,15 +48,13 @@ void	modify_coord(t_env *env)
 	env->x_fin = ((env->x_fin - m) / env->zoom->zoom) + m;
 	if (env->zoom->y_zoom > 0)
 		n = value_y(env, env->zoom->y_zoom);
-	else 
+	else
 		n = 0;
 	env->y_init = ((env->y_init - n) / env->zoom->zoom) + n;
 	env->y_fin = ((env->y_fin - n) / env->zoom->zoom) + n;
 }
 
-
-
-void	trace(t_env *env)
+void		trace(t_env *env)
 {
 	if (env->number == 0 || env->number == 2)
 		trace_mandelbrot(env);

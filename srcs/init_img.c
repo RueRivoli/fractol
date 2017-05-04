@@ -38,12 +38,16 @@ t_img		*init_img(t_env *env, int height, int width)
 	return (image);
 }
 
-void		fill_img(t_env *env, int *h, int *w)
+int			fill_img(t_env *env, int *h, int *w)
 {
-	env->back_img->img = mlx_xpm_file_to_image(env->mlx, \
-			"images/planetpropre.xpm", w, h);
-	env->church_img->img = mlx_xpm_file_to_image(env->mlx, \
-			"images/church.xpm", w, h);
-	env->sup_img->img = mlx_xpm_file_to_image(env->mlx, \
-			"images/blancdim.XPM", w, h);
+	if (!(env->back_img->img = mlx_xpm_file_to_image(env->mlx, \
+	"../../../../Users/fgallois/images/planetpropre.xpm", w, h)))
+		return (0);
+	if (!(env->church_img->img = mlx_xpm_file_to_image(env->mlx, \
+	"../../../../Users/fgallois/images/church.xpm", w, h)))
+		return (0);
+	if (!(env->sup_img->img = mlx_xpm_file_to_image(env->mlx, \
+	"../../../../Users/fgallois/images/blancdim.XPM", w, h)))
+		return (0);
+	return (1);
 }

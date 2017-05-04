@@ -84,10 +84,9 @@ typedef struct	s_env
 	t_img	*sup_img;
 	t_img	*church_img;
 
-	int number;
-	char *fractal_name;
+	int 	number;
+	char 	*fractal_name;
 
-	t_node	**map;
 	t_zoom	*zoom;
 
 	float 	x_init;
@@ -98,8 +97,8 @@ typedef struct	s_env
 	t_jul*	jul;
 	t_man*	man;
 
-	int moovable;
-	int theme;
+	int 	moovable;
+	int 	theme;
 }				t_env;
 
 #endif

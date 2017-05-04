@@ -6,7 +6,7 @@
 /*   By: fgallois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 15:58:17 by fgallois          #+#    #+#             */
-/*   Updated: 2017/05/01 18:08:36 by fgallois         ###   ########.fr       */
+/*   Updated: 2017/05/04 20:32:14 by fgallois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,44 +20,17 @@
 # define SIZE_X 1920
 # define SIZE_Y 1080
 
-# define PI 3.14
-# define THETA 10 * PI / 180
-# define FENE_X 1200 //900
-# define FENE_Y 900 //650
+# define FENE_X 1200
+# define FENE_Y 900
 
-# define CENTER_X 600
-# define CENTER_Y 450
 # define BACK_X 1024
 # define BACK_Y 850
 # define SUPP_X 1240
 # define SUPP_Y 940
 # define CHURCH 217
 
-# define COLOR_HIGH_ALT 10764449
-# define COLOR_RISE 10784064
-
 # define HEIGHT_DRAW 800
 # define WIDTH_DRAW 600
-
-/*
-** Origines
-*/
-
-# define ORIGIN_GRAPH_X 360
-# define ORIGIN_GRAPH_Y 100
-
-/*
-** Constantes geometriques
-*/
-
-# define CTE 1
-# define CTE1 0.5
-# define CTE2 0.5
-# define COEFF_TRANS 15
-# define COEFF_ZOOM 1.2
-# define COEFF_DEZOOM 1/1.2
-# define COEFF_Z 1.2
-# define COEFF_ZD 1/1.2
 
 /*
 ** Key_code
@@ -72,15 +45,8 @@
 # define TOUCH_PLUS 69
 # define TOUCH_LESS 78
 # define TOUCH_P 35
-# define TOUCH_I 34
 # define TOUCH_R 15
-# define TOUCH_T 17
-# define TOUCH_Z 6
-# define TOUCH_E 14
-# define TOUCH_S 1
-# define TOUCH_D 2
 # define TOUCH_M 46
-
 # define TOUCH_G 5
 # define TOUCH_B 11
 # define TOUCH_Y 16
@@ -94,18 +60,6 @@
 # define SCROLL_OTHER 6
 # define SCROLL_BIS 7
 
-# define COLOR_Z_1 "0x00007F"
-# define COLOR_Z_2 "0x0000BF"
-# define COLOR_Z_3 "0x005FBF"
-# define COLOR_Z_4 "0x56AAFF"
-# define COLOR_Z_5 "0x007F7F"
-# define COLOR_Z_6 "0xBF5F00"
-# define COLOR_Z_7 "0xFFFF56"
-# define COLOR_Z_8 "0x999999"
-# define COLOR_Z_9 "0xCCCCCC"
-# define COLOR_Z_10 "0xFF0000"
-
-
 # define GREEN 0xb6ff48
 # define BLUE 0x1d4a64
 # define BLUE_MENU 0x05199d
@@ -113,6 +67,5 @@
 # define PINK 0xff00c1
 # define RED 0xff0000
 # define ORANGE 0xFFA500
-
 
 #endif

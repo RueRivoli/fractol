@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fgallois <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 19:25:46 by fgallois          #+#    #+#             */
+/*   Updated: 2017/05/04 19:26:14 by fgallois         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 int			print_menu(t_env *env)
 {
 	mlx_string_put(env->mlx, env->win, 1700, 115, 0xd6b017, " M E N U ");
-	mlx_string_put(env->mlx, env->win, 1650, 200, 0xD3D3DA, "Couleurs : R P B Y G");
+	mlx_string_put(env->mlx, env->win, 1650, 200, \
+			0xD3D3DA, "Couleurs : R P B Y G");
 	mlx_string_put(env->mlx, env->win, 1650, 250, 0xD3D3DA,\
 			"Rendre modulable : M");
 	mlx_string_put(env->mlx, env->win, 1650, 300, 0xD3D3DA,\
