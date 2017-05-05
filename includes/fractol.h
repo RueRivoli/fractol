@@ -65,6 +65,7 @@ int			mouse_funct_moovable(int x, int y, t_env *env);
 
 void		new_one(t_env *env);
 t_env		*new_env(void);
+void		name2(t_env *env, char *av1);
 void		name(t_env *env, char *av1);
 t_env		*init_env(char *av1);
 
@@ -93,7 +94,7 @@ float		value_x(t_env *env, int x);
 float		value_y(t_env *env, int y);
 t_node		*init_node();
 void		modify_coord(t_env *env);
-void		trace(t_env *env);
+
 
 /*
  ** main.c
@@ -113,11 +114,13 @@ void		print_image_sign(t_env *env);
 void		print_all(t_env *env);
 
 /*
- ** print2.c
+ ** printandseq.c
  */
 
 int			print_menu(t_env *env);
 int			print_title(t_env *env);
+void		apply_sequence_jul(t_env *env, t_node *node, float re_cte, float im_cte);
+void		apply_sequence_man(t_env *env, t_node *node, float re_cte, float im_cte);
 
 /*
  ** sequence.c
@@ -126,6 +129,17 @@ int			print_title(t_env *env);
 void		sequence_mandelbrot(t_node *node, float re_cte, float im_cte);
 void		sequence_bship(t_node *node, float re_cte, float im_cte);
 void		sequence_julia(t_node *node, float re_cte, float im_cte);
+void        sequence_myfractal(t_node *node, float re_cte, float im_cte);
+
+/*
+ ** sequence2.c
+ */
+
+void        sequence_chameleon(t_node *node, float re_cte, float im_cte);
+void        sequence_sword(t_node *node, float re_cte, float im_cte);
+void        sequence_celtic(t_node *node, float re_cte, float im_cte);
+void        sequence_tricorn(t_node *node, float re_cte, float im_cte);
+
 
 /*
  ** trace.c
@@ -135,5 +149,7 @@ void		convergence_mandelbrot(t_env *env, t_node *node, int x, int y);
 void		trace_mandelbrot(t_env *env);
 void		convergence_julia(t_env *env, t_node *node, int x, int y);
 void		trace_julia(t_env *env);
+void		trace(t_env *env);
+
 
 #endif

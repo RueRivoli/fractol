@@ -28,10 +28,7 @@ void		convergence_mandelbrot(t_env *env, t_node *node, int x, int y)
 	while (node->re_z * node->re_z + node->im_z * node->im_z < 4 \
 			&& iteration < env->zoom->iteration)
 	{
-		if (env->number == 0)
-			sequence_mandelbrot(node, re_cte, im_cte);
-		else if (env->number == 2)
-			sequence_bship(node, re_cte, im_cte);
+		apply_sequence_man(env, node, re_cte, im_cte);
 		iteration++;
 	}
 	if (iteration == env->zoom->iteration)
@@ -62,6 +59,8 @@ void		trace_mandelbrot(t_env *env)
 	free(node);
 }
 
+
+
 void		convergence_julia(t_env *env, t_node *node, int x, int y)
 {
 	float		re_cte;
@@ -81,7 +80,7 @@ void		convergence_julia(t_env *env, t_node *node, int x, int y)
 	while (node->re_z * node->re_z + node->im_z * node->im_z < 4 \
 			&& iteration < env->zoom->iteration)
 	{
-		sequence_julia(node, re_cte, im_cte);
+		apply_sequence_jul(env, node, re_cte, im_cte);
 		iteration++;
 	}
 	if (iteration == env->zoom->iteration)
@@ -112,4 +111,12 @@ void		trace_julia(t_env *env)
 		x++;
 	}
 	free(node);
+}
+
+void		trace(t_env *env)
+{
+	if (env->number == 0 || env->number == 2 || env->number == 5 || env->number == 6)
+		trace_mandelbrot(env);
+	if (env->number == 1 || env->number == 3 || env->number == 4 || env->number == 7)
+		trace_julia(env);
 }

@@ -54,10 +54,3 @@ void		modify_coord(t_env *env)
 	env->y_fin = ((env->y_fin - n) / env->zoom->zoom) + n;
 }
 
-void		trace(t_env *env)
-{
-	if (env->number == 0 || env->number == 2)
-		trace_mandelbrot(env);
-	if (env->number == 1)
-		trace_julia(env);
-}

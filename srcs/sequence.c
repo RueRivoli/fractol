@@ -39,3 +39,14 @@ void		sequence_julia(t_node *node, float re_cte, float im_cte)
 	node->re_z = node->re_z * node->re_z - node->im_z * node->im_z + re_cte;
 	node->im_z = 2 * node->im_z * mem + im_cte;
 }
+
+void        sequence_myfractal(t_node *node, float re_cte, float im_cte)
+{
+    float		mem;
+
+	mem = node->re_z;
+    node->re_z = fabs(node->re_z * node->re_z -
+				node->im_z * node->im_z) + re_cte;
+    node->im_z = -2 * node->im_z *
+				mem + im_cte;
+}

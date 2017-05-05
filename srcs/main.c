@@ -18,11 +18,14 @@ t_env		*handle_error(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_putstr("usage: fractol [parameter (mandelbrot, julia or bship)]\n");
+		ft_putstr("usage: fractol [parameter (mandelbrot, julia, bship, chameleon, sword, celtic, tricorn or myfractal)]\n");
 		return (NULL);
 	}
 	if (ft_strcmp(argv[1], "mandelbrot") != 0 && \
-			ft_strcmp(argv[1], "julia") && ft_strcmp(argv[1], "bship") != 0)
+			ft_strcmp(argv[1], "julia") != 0 && ft_strcmp(argv[1], "bship") != 0 \
+			&& ft_strcmp(argv[1], "chameleon") != 0 && \
+		ft_strcmp(argv[1], "sword") != 0 && ft_strcmp(argv[1], "celtic") != 0 && \
+		ft_strcmp(argv[1], "tricorn") != 0 && ft_strcmp(argv[1], "myfractal") != 0)
 	{
 		error_param_no_conform();
 		return (NULL);
@@ -52,6 +55,12 @@ int			main(int argc, char **argv)
 	trace(env);
 	print_all(env);
 	ft_hook(env);
+	mlx_destroy_window(env->mlx, env->win);
+
+	free(env->fractal_name);
+	free(env->zoom);
+	free(env->man);
+	free(env->jul);
 	free(env);
 	return (0);
 }

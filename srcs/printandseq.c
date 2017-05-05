@@ -47,3 +47,28 @@ int			print_title(t_env *env)
 			"http://github.com/RueRivoli");
 	return (1);
 }
+
+void		apply_sequence_jul(t_env *env, t_node *node, float re_cte, float im_cte)
+{
+	if (env->number == 1)
+			sequence_julia(node, re_cte, im_cte);
+	else if (env->number == 3)
+			sequence_chameleon(node, re_cte, im_cte);
+	else if (env->number == 4)
+			sequence_sword(node, re_cte, im_cte);
+	else if (env->number == 7)
+			sequence_myfractal(node, re_cte, im_cte);
+}
+
+void		apply_sequence_man(t_env *env, t_node *node, float re_cte, float im_cte)
+{
+		if (env->number == 0)
+			sequence_mandelbrot(node, re_cte, im_cte);
+		else if (env->number == 2)
+			sequence_bship(node, re_cte, im_cte);
+		else if (env->number == 5)
+			sequence_celtic(node, re_cte, im_cte);
+		else if (env->number == 6)
+			sequence_tricorn(node, re_cte, im_cte);
+}
+

@@ -54,7 +54,6 @@ void		new_julia(t_env *env)
 	env->y_fin = 1.7;
 	env->y_init = -1.7;
 	zoom->iteration = 150;
-	env->number = 1;
 }
 
 void		new_zoom(t_env *env)
@@ -74,17 +73,18 @@ void		new_zoom(t_env *env)
 
 void		adapt_to_fractal(t_env *env)
 {
-	if (env->number == 0)
+	if (env->number == 0 || env->number == 5 || env->number == 6)
 	{
 		new_mandelbrot(env);
 		new_zoom(env);
 		env->zoom->iteration = 50;
 	}
-	else if (env->number == 1)
+	else if (env->number == 1 || env->number == 3 || \
+	env->number == 4 || env->number == 7)
 	{
 		new_julia(env);
 		new_zoom(env);
-		env->zoom->iteration = 150;
+		env->zoom->iteration = 50;
 	}
 	else if (env->number == 2)
 	{
