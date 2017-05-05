@@ -6,7 +6,7 @@
 /*   By: fgallois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 12:55:13 by fgallois          #+#    #+#             */
-/*   Updated: 2017/05/04 19:38:32 by fgallois         ###   ########.fr       */
+/*   Updated: 2017/05/05 19:11:53 by fgallois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,8 @@ t_env		*init_env(char *av1)
 	env->mlx = mlx_init();
 	if (!env->mlx)
 		return (NULL);
-	if (!(env->win = mlx_new_window(env->mlx, SIZE_X, SIZE_Y, "Fractol by fgallois")))
+	if (!(env->win = mlx_new_window(env->mlx, SIZE_X, SIZE_Y, \
+					"Fractol by fgallois")))
 		return (NULL);
 	env->img = init_img(env, FENE_X, FENE_Y);
 	env->back_img = init_img(env, SIZE_X, SIZE_Y);

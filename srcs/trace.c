@@ -6,7 +6,7 @@
 /*   By: fgallois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 17:09:54 by fgallois          #+#    #+#             */
-/*   Updated: 2017/05/04 19:35:51 by fgallois         ###   ########.fr       */
+/*   Updated: 2017/05/05 19:21:37 by fgallois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void		trace_mandelbrot(t_env *env)
 	}
 	free(node);
 }
-
-
 
 void		convergence_julia(t_env *env, t_node *node, int x, int y)
 {
@@ -115,8 +113,10 @@ void		trace_julia(t_env *env)
 
 void		trace(t_env *env)
 {
-	if (env->number == 0 || env->number == 2 || env->number == 5 || env->number == 6)
+	if (env->number == 0 || env->number == 2 || env->number == 5 || \
+			env->number == 6)
 		trace_mandelbrot(env);
-	if (env->number == 1 || env->number == 3 || env->number == 4 || env->number == 7)
+	if (env->number == 1 || env->number == 3 || env->number == 4 || \
+			env->number == 7)
 		trace_julia(env);
 }

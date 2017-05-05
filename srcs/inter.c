@@ -6,7 +6,7 @@
 /*   By: fgallois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 19:20:36 by fgallois          #+#    #+#             */
-/*   Updated: 2017/05/04 19:22:24 by fgallois         ###   ########.fr       */
+/*   Updated: 2017/05/05 19:12:41 by fgallois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,3 @@ void		modify_coord(t_env *env)
 	env->y_init = ((env->y_init - n) / env->zoom->zoom) + n;
 	env->y_fin = ((env->y_fin - n) / env->zoom->zoom) + n;
 }
-

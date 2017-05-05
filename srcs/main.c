@@ -6,7 +6,7 @@
 /*   By: fgallois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 11:04:35 by fgallois          #+#    #+#             */
-/*   Updated: 2017/05/04 20:24:58 by fgallois         ###   ########.fr       */
+/*   Updated: 2017/05/05 19:14:51 by fgallois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,16 @@ t_env		*handle_error(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_putstr("usage: fractol [parameter (mandelbrot, julia, bship, chameleon, sword, celtic, tricorn or myfractal)]\n");
+		ft_putstr("usage: fractol [parameter (mandelbrot, julia, bship, \
+			chameleon, sword, celtic, tricorn or myfractal)]\n");
 		return (NULL);
 	}
 	if (ft_strcmp(argv[1], "mandelbrot") != 0 && \
-			ft_strcmp(argv[1], "julia") != 0 && ft_strcmp(argv[1], "bship") != 0 \
-			&& ft_strcmp(argv[1], "chameleon") != 0 && \
-		ft_strcmp(argv[1], "sword") != 0 && ft_strcmp(argv[1], "celtic") != 0 && \
-		ft_strcmp(argv[1], "tricorn") != 0 && ft_strcmp(argv[1], "myfractal") != 0)
+			ft_strcmp(argv[1], "julia") != 0 && ft_strcmp(argv[1], "bship") \
+			!= 0 && ft_strcmp(argv[1], "chameleon") != 0 && \
+		ft_strcmp(argv[1], "sword") != 0 && \
+		ft_strcmp(argv[1], "celtic") != 0 && ft_strcmp(argv[1], "tricorn") \
+		!= 0 && ft_strcmp(argv[1], "myfractal") != 0)
 	{
 		error_param_no_conform();
 		return (NULL);
@@ -46,6 +48,15 @@ void		ft_hook(t_env *env)
 	mlx_loop(env->mlx);
 }
 
+void		ft_free(t_env *env)
+{
+	free(env->fractal_name);
+	free(env->zoom);
+	free(env->man);
+	free(env->jul);
+	free(env);
+}
+
 int			main(int argc, char **argv)
 {
 	t_env	*env;
@@ -56,11 +67,5 @@ int			main(int argc, char **argv)
 	print_all(env);
 	ft_hook(env);
 	mlx_destroy_window(env->mlx, env->win);
-
-	free(env->fractal_name);
-	free(env->zoom);
-	free(env->man);
-	free(env->jul);
-	free(env);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fgallois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 19:25:46 by fgallois          #+#    #+#             */
-/*   Updated: 2017/05/04 19:26:14 by fgallois         ###   ########.fr       */
+/*   Updated: 2017/05/05 19:16:41 by fgallois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,27 +48,28 @@ int			print_title(t_env *env)
 	return (1);
 }
 
-void		apply_sequence_jul(t_env *env, t_node *node, float re_cte, float im_cte)
+void		apply_sequence_jul(t_env *env, t_node *node, \
+		float re_cte, float im_cte)
 {
 	if (env->number == 1)
-			sequence_julia(node, re_cte, im_cte);
+		sequence_julia(node, re_cte, im_cte);
 	else if (env->number == 3)
-			sequence_chameleon(node, re_cte, im_cte);
+		sequence_chameleon(node, re_cte, im_cte);
 	else if (env->number == 4)
-			sequence_sword(node, re_cte, im_cte);
+		sequence_sword(node, re_cte, im_cte);
 	else if (env->number == 7)
-			sequence_myfractal(node, re_cte, im_cte);
+		sequence_myfractal(node, re_cte, im_cte);
 }
 
-void		apply_sequence_man(t_env *env, t_node *node, float re_cte, float im_cte)
+void		apply_sequence_man(t_env *env, t_node *node, \
+		float re_cte, float im_cte)
 {
-		if (env->number == 0)
-			sequence_mandelbrot(node, re_cte, im_cte);
-		else if (env->number == 2)
-			sequence_bship(node, re_cte, im_cte);
-		else if (env->number == 5)
-			sequence_celtic(node, re_cte, im_cte);
-		else if (env->number == 6)
-			sequence_tricorn(node, re_cte, im_cte);
+	if (env->number == 0)
+		sequence_mandelbrot(node, re_cte, im_cte);
+	else if (env->number == 2)
+		sequence_bship(node, re_cte, im_cte);
+	else if (env->number == 5)
+		sequence_celtic(node, re_cte, im_cte);
+	else if (env->number == 6)
+		sequence_tricorn(node, re_cte, im_cte);
 }
-

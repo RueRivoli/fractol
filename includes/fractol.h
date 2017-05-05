@@ -6,7 +6,7 @@
 /*   By: fgallois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 14:52:14 by fgallois          #+#    #+#             */
-/*   Updated: 2017/05/04 20:34:15 by fgallois         ###   ########.fr       */
+/*   Updated: 2017/05/05 19:15:20 by fgallois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void		modify_coord(t_env *env);
 
 t_env		*handle_error(int argc, char **argv);
 void		ft_hook(t_env *env);
+void		ft_free(t_env *env);
 
 /*
  ** print.c
