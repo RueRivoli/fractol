@@ -6,7 +6,7 @@
 /*   By: fgallois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 11:04:35 by fgallois          #+#    #+#             */
-/*   Updated: 2017/05/05 19:14:51 by fgallois         ###   ########.fr       */
+/*   Updated: 2017/05/05 19:34:06 by fgallois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ t_env		*handle_error(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_putstr("usage: fractol [parameter (mandelbrot, julia, bship, \
-			chameleon, sword, celtic, tricorn or myfractal)]\n");
+		ft_putstr("usage: fractol [parameter (mandelbrot, julia, bship,\
+ chameleon, sword, celtic, tricorn or myfractal)]\n");
 		return (NULL);
 	}
 	if (ft_strcmp(argv[1], "mandelbrot") != 0 && \

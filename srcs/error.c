@@ -14,7 +14,8 @@
 
 void	error_param_no_conform(void)
 {
-	ft_putstr("Le parametre n'est pas compatible\n");
+	ft_putstr("usage: fractol [parameter (mandelbrot, julia, bship,\
+ chameleon, sword, celtic, tricorn or myfractal)]\n");
 }
 
 void	error_no_file(void)
