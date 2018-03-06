@@ -10,5 +10,5 @@ This projet consists in doing a software of exploring fractals.
 * cd fractol
 * make
 
-## Start
-* ./fractol [mandelbrot or julia or bship or chameleon or sword or celtic or tricorn]
+## Usage
+* ./fractol [mandelbrot or julia or bship or chameleon or sword or celtic or tricorn or myfractal]
