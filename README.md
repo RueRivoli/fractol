@@ -11,6 +11,7 @@ This projet consists in doing a software of exploring fractals.
 ## Install
 * git clone https://github.com/RueRivoli/fractol.git 
 * cd fractol
+* git clone https://github.com/RueRivoli/libft.git
 * make
 
 ## Usage
