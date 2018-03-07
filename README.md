@@ -1,8 +1,10 @@
-# fractol
-Graphical project 
+# Fractol, Graphical project 
 
+(EN)
 Ce projet consiste en la réalisation d'un logiciel d'exploration fractal.
+------------------------------------------------------------------------------------------------------
 
+(FR)
 This projet consists in doing a software of exploring fractals.
 
 ## Install
