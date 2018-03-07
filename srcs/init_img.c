@@ -41,13 +41,13 @@ t_img		*init_img(t_env *env, int height, int width)
 int			fill_img(t_env *env, int *h, int *w)
 {
 	if (!(env->back_img->img = mlx_xpm_file_to_image(env->mlx, \
-	"../../../../Users/fgallois/images/planetpropre.xpm", w, h)))
+	"images/planetpropre.xpm", w, h)))
 		return (0);
 	if (!(env->church_img->img = mlx_xpm_file_to_image(env->mlx, \
-	"../../../../Users/fgallois/images/church.xpm", w, h)))
+	"images/church.xpm", w, h)))
 		return (0);
 	if (!(env->sup_img->img = mlx_xpm_file_to_image(env->mlx, \
-	"../../../../Users/fgallois/images/blancdim.XPM", w, h)))
+	"images/blancdim.xpm", w, h)))
 		return (0);
 	return (1);
 }
