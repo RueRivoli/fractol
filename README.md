@@ -18,5 +18,5 @@ This projet consists in doing a software of exploring fractals.
 * ./fractol [mandelbrot or julia or bship or chameleon or sword or celtic or tricorn or myfractal]
 
 ## Illustration
-[![Alt text for your video](img.youtube.com/vi/watch?v=nkSiuSWgv_0/0.jpg)](https://www.youtube.com/watch?v=nkSiuSWgv_0)
+[![Alt text for your video](https://img.youtube.com/vi/watch?v=nkSiuSWgv_0/0.jpg)](https://www.youtube.com/watch?v=nkSiuSWgv_0)
 
