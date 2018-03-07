@@ -20,4 +20,3 @@ This projet consists in doing a software of exploring fractals.
 ## Illustration
 [![Alt text for your video](https://img.youtube.com/vi/nkSiuSWgv_0/0.jpg)](https://www.youtube.com/watch?v=nkSiuSWgv_0)
 
-[![Alt text for your video](https://img.youtube.com/vi/H8QbKCzpmxM/0.jpg)](https://www.youtube.com/watch?v=H8QbKCzpmxM)
